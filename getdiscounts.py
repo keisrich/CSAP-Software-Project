@@ -1,5 +1,6 @@
 import requests
 from getinterests import dic
+from getinterests import dataM
 
 url = "https://fake-supermarket.myshopify.com/admin/api/2019-10/price_rules.json"
 
@@ -25,35 +26,33 @@ foodie = ['baking', 'cook', 'produce', 'garden', 'drinks']
 parent =  ['baby', 'garden', 'school', 'snack']
 student = ['meal', 'school', 'snack']
 general = []
-
-
         
 #parse through array of user interests imported from getinterests.py
 for user_fname, interest_list in dic.items():
     
     #go through user interests
     for one_interest in interest_list:
-        
-        #print(user_fname)
+    
         if dic[user_fname] == foodie:
-            #add user to foodie campaign
+            
+            dataM['members'][0]['tags'] = 'foodie'
             dic[user_fname].append('foodie tag')
-            #print(dic[user_fname])
-            #print(" is a foodie!!")
+            #print(user_fname)
+            #print(dataM['members'][0]['tags'])
             break
             
         if dic[user_fname] == parent:
-            #add user to foodie campaign
+            dataM['members'][0]['tags'] = 'parent'
             dic[user_fname].append('parent tag')
-            #print(dic[user_fname])
-            #print(" is a parent!!")
+            #print(user_fname)
+            #print(dataM['members'][0]['tags'])
             break
             
         if dic[user_fname] == student:
-            #add user to foodie campaign
+            dataM['members'][0]['tags'] = 'student'
             dic[user_fname].append('student tag')
-            #print(dic[user_fname])
-            #print(" is a student!!")
+            #print(user_fname)
+            #print(dataM['members'][0]['tags'])
             break
             
 
