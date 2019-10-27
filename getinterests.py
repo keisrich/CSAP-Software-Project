@@ -22,13 +22,18 @@ data = response.json()
 
 current_user = "null"
 dic = {}
+user_email = []
 
 
 ##parse through all members and return all true interests
 for item in data['members']:  
     
+   
     current_user = item['merge_fields']['FNAME']
     dic[current_user] = []
+    #print(item['email_address'])
+    user_email.append(item['email_address'])
+    
     
     ##checks all interests to be true    
     if (item['interests']['ef40a668ea']):
@@ -47,7 +52,7 @@ for item in data['members']:
         dic[current_user].append("garden")
         
     if (item['interests']['2dc4513102']):
-        dic[current_user].append("grill")
+        dic[current_user].append("gril")
         
     if (item['interests']['9f540ea5ad']):
         dic[current_user].append("health")
@@ -65,8 +70,39 @@ for item in data['members']:
         dic[current_user].append("snack")
         
     if (item['interests']['d67f39cf24']):
-        dic[current_user].append("drinks")    
+        dic[current_user].append("drinks")  
+            
+        
+#tags/email campaigns
+foodie = ['baking', 'cook', 'produce', 'garden', 'drinks']
+parent =  ['baby', 'garden', 'school', 'snack']
+student = ['meal', 'school', 'snack']
+
+#array of email addresses
+foodie_email = []
+student_email = []
+parent_email = []
+
+
+#compares user interests to tags 
+#creates array of email addresses with a tag
+
+for item in data['members']:  
+       
+    current_user = item['merge_fields']['FNAME']
+    
+    if dic[current_user] == foodie:
+        foodie_email.append(item['email_address'])
+        #print(foodie_email[0])
+        #print("issa foodie")  
+    if dic[current_user] == parent:
+        parent_email.append(item['email_address'])
+        #print(parent_email[0])
+        #print("issa parent")
+            
+    if dic[current_user] == student:
+        student_email.append(item['email_address'])
+        #print(student_email[0])
+        #print("issa student")
 
     
-        
-            
